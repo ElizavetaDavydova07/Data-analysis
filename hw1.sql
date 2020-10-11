@@ -1,11 +1,11 @@
-SELECT 'ФИО: Давыдова Елизавета Кантемировна'
+SELECT 'ФИО: Давыдова Елизавета Кантемировна';
 -- 1.Простые выборки
 -- 1.1
 SELECT * FROM movie.ratings LIMIT 10;
 -- 1.2
 SELECT * FROM movie.links WHERE imdbid LIKE '%42' AND movieid BETWEEN 100 AND 1000;
 -- 2.Сложные выборки
-SELECT * FROM movie.links INNER JOIN movie.ratings ON movie.links.movieid = movie.ratings.movieid WHERE rating = 5;
+SELECT * FROM movie.links INNER JOIN movie.ratings ON movie.links.movieid = movie.ratings.movieid WHERE rating = 5 LIMIT 10;
 -- 3.Аггрегация данных: базовые статистики
 -- 3.1
 SELECT COUNT(*) FROM movie.ratings WHERE rating = NULL;
@@ -20,4 +20,4 @@ AS (
     SELECT userid, AVG(rating) AS avg_rating FROM movie.ratings GROUP BY userid HAVING count(rating) > 10
 )
 SELECT
-    avg_rating FROM avg_user LIMIT 10;
+    AVG(avg_rating) FROM avg_user LIMIT 10;

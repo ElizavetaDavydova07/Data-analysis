@@ -8,7 +8,7 @@ SELECT * FROM movie.links WHERE imdbid LIKE '%42' AND movieid BETWEEN 100 AND 10
 SELECT * FROM movie.links INNER JOIN movie.ratings ON movie.links.movieid = movie.ratings.movieid WHERE rating = 5 LIMIT 10;
 -- 3.Аггрегация данных: базовые статистики
 -- 3.1
-SELECT COUNT(*) FROM movie.ratings WHERE rating = NULL;
+SELECT COUNT(links.movieid) FROM movie.links LEFT JOIN movie.ratings ON movie.links.movieid = movie.ratings.movieid WHERE movie.ratings.movieid IS NULL;
 -- 3.2
 SELECT userid, AVG(rating)  FROM movie.ratings GROUP BY userid HAVING AVG(rating) > 3.5 LIMIT 10;
 -- 4.Иерархические запросы

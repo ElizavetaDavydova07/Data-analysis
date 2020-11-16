@@ -15,10 +15,10 @@ printjson(
         db.tags.aggregate([
                 {"$group": {
                                 "_id": "$tag_name",
-                                "tag_count": "{ $sum: 1 }"
+                                "tag_count": { "$sum": 1 }
                            }
                 },
-                {$sort : {tag_count : -1 }},
-                {$limit: 3}
+                {"$sort": {tag_count : -1 }},
+                {"limit" 3}
         ])['_batch']
 );
